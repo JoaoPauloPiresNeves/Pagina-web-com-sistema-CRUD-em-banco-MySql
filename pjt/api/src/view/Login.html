@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Login - Sistema de Gerenciamento</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+        }
+        .login-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            overflow: hidden;
+        }
+        .login-header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        .login-body {
+            padding: 30px;
+        }
+        .form-control {
+            border-radius: 8px;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        .form-control:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+        }
+        .btn-login {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .alert {
+            border-radius: 8px;
+            border: none;
+        }
+        .login-instructions {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h2><i class="fas fa-lock me-2"></i>Acesso ao Sistema</h2>
+            <p class="mb-0">Digite suas credenciais para continuar</p>
+        </div>
+        
+        <div class="login-body">
+            <div class="mb-3">
+                <label for="txtEmail" class="form-label">Email</label>
+                <input type="email" id="txtEmail" class="form-control" placeholder="seu@email.com" />
+            </div>
+            
+            <div class="mb-3">
+                <label for="txtSenha" class="form-label">Senha</label>
+                <input type="password" id="txtSenha" class="form-control" placeholder="Sua senha" />
+            </div>
+
+            <div id="divResposta" class="alert d-none mb-3"></div>
+            
+            <button id="btnLogin" class="btn btn-login btn-lg w-100 text-white">
+                <i class="fas fa-sign-in-alt me-2"></i>Entrar
+            </button>
+
+            <div class="login-instructions mt-4">
+                <small class="text-muted">
+                    <strong>Credenciais de teste:</strong><br>
+                    Email: pires@gmail.com<br>
+                    Senha: 123456
+                </small>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import ApiService from './ApiService.js';
+
+        // Elementos do DOM
+        const txtEmail = document.getElementById("txtEmail");
+        const txtSenha = document.getElementById("txtSenha");
+        const btnLogin = document.getElementById("btnLogin");
+        const divResposta = document.getElementById("divResposta");
+
+        // Função para exibir mensagens
+        function showResponse(message, type) {
+            if (message) {
+                divResposta.textContent = message;
+                divResposta.className = `alert alert-${type}`;
+                
+                if (type === "success") {
+                    setTimeout(() => {
+                        divResposta.classList.add("d-none");
+                    }, 5000);
+                }
+            } else {
+                divResposta.className = "d-none";
+            }
+        }
+
+        // Função para validar email
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        // Evento de login
+        btnLogin.addEventListener("click", async function() {
+            const email = txtEmail.value.trim();
+            const senha = txtSenha.value.trim();
+
+            // Validações
+            if (!email) {
+                showResponse("Digite seu email", "warning");
+                txtEmail.focus();
+                return;
+            }
+
+            if (!validateEmail(email)) {
+                showResponse("Digite um email válido", "warning");
+                txtEmail.focus();
+                return;
+            }
+
+            if (!senha) {
+                showResponse("Digite sua senha", "warning");
+                txtSenha.focus();
+                return;
+            }
+
+            try {
+                showResponse("Autenticando...", "info");
+                
+                // Dados para login - formato que sua API espera
+                const dadosLogin = {
+                    "usuario": {
+                        "email": email,
+                        "senha": senha
+                    }
+                };
+
+                console.log("Enviando para login:", dadosLogin);
+
+                // Instancia ApiService (sem token inicial)
+                const api = new ApiService();
+                
+                // Faz requisição de login
+                const resposta = await api.post("/pjt/logar", dadosLogin);
+                
+                console.log("Resposta completa da API:", resposta);
+                
+                if (resposta && resposta.success) {
+                    // ⚠️ ALTERAÇÃO PRINCIPAL AQUI ⚠️
+                    // Verificar a estrutura real da resposta para encontrar o token
+                    let token = null;
+                    
+                    // Possível estrutura 1: resposta.data.token
+                    if (resposta.data && resposta.data.token) {
+                        token = resposta.data.token;
+                    } 
+                    // Possível estrutura 2: resposta.token 
+                    else if (resposta.token) {
+                        token = resposta.token;
+                    }
+                    // Possível estrutura 3: resposta.view com token específico
+                    else if (resposta.data && resposta.data.view) {
+                        // Procurar por qualquer propriedade que pareça um token JWT
+                        for (let key in resposta.data.view) {
+                            const value = resposta.data.view[key];
+                            if (typeof value === 'string' && value.length > 100 && value.includes('.')) {
+                                token = value;
+                                console.log("Token encontrado na view:", key);
+                                break;
+                            }
+                        }
+                    }
+                    // Possível estrutura 4: resposta.accessToken ou resposta.access_token
+                    else if (resposta.accessToken) {
+                        token = resposta.accessToken;
+                    }
+                    else if (resposta.access_token) {
+                        token = resposta.access_token;
+                    }
+                    // Estrutura 5: procurar em qualquer lugar da resposta
+                    else {
+                        // Função para procurar token recursivamente
+                        function findToken(obj) {
+                            for (let key in obj) {
+                                if (typeof obj[key] === 'string' && 
+                                    obj[key].length > 100 && 
+                                    obj[key].includes('.') &&
+                                    obj[key].split('.').length === 3) {
+                                    return obj[key];
+                                }
+                                if (typeof obj[key] === 'object' && obj[key] !== null) {
+                                    const found = findToken(obj[key]);
+                                    if (found) return found;
+                                }
+                            }
+                            return null;
+                        }
+                        
+                        token = findToken(resposta);
+                    }
+                    
+                    if (token) {
+                        // SALVAR NO LOCALSTORAGE
+                        localStorage.setItem("token", token);
+                        localStorage.setItem("userData", JSON.stringify(resposta));
+                        
+                        console.log("✅ Token extraído e salvo:", token.substring(0, 50) + "...");
+                        console.log("📦 LocalStorage atualizado");
+                        
+                        showResponse("Login realizado com sucesso!", "success");
+                        
+                        // Redireciona para o dashboard
+                        setTimeout(() => {
+                            window.location.href = "Dashboard.html";
+                        }, 1000);
+                    } else {
+                        console.error("❌ Token não encontrado. Estrutura completa:", resposta);
+                        showResponse("Erro: Token não recebido do servidor. Verifique console.", "danger");
+                    }
+                    
+                } else {
+                    showResponse(resposta.message || "Erro ao fazer login", "danger");
+                }
+                
+            } catch (error) {
+                console.error("Erro no login:", error);
+                showResponse("Erro ao conectar com o servidor: " + error.message, "danger");
+            }
+        });
+
+        // Permitir login com Enter
+        txtSenha.addEventListener("keypress", function(e) {
+            if (e.key === "Enter") {
+                btnLogin.click();
+            }
+        });
+
+        // Verificar se já está logado (redirecionar se tiver token)
+        document.addEventListener("DOMContentLoaded", function() {
+            const token = localStorage.getItem("token");
+            console.log("Token no localStorage ao carregar:", token);
+            
+            if (token) {
+                console.log("Usuário já logado, redirecionando...");
+                window.location.href = "Dashboard.html";
+            }
+            
+            // Preencher credenciais de teste para facilitar
+            txtEmail.value = "pires@gmail.com";
+            txtSenha.value = "123456";
+        });
+    </script>
+</body>
+</html>

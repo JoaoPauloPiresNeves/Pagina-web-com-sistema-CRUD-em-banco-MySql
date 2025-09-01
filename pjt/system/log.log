@@ -1,0 +1,666 @@
+[2025-05-29 23:09:28.000] [Throwable] 
+ Throwable:
+Message: Failed opening required 'api/src/model/dao/ClienteDAO.php' (include_path='C:\xampp\php\PEAR')
+Code: 0
+File: C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\middlewares\ClienteMiddleware.php
+Line: 131
+Trace:
+#0 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Roteador.php(113): ClienteMiddleware->hasNotClienteByEmail('email@exemplo.c...')
+#1 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Router.php(458): Roteador->{closure}()
+#2 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#3 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Router.php(287): Router->handle(Array, true)
+#4 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Roteador.php(370): Router->run()
+#5 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api.php(24): Roteador->start()
+#6 {main} 
+ **************************************************************************************************** 
+[2025-05-29 23:12:34.000] [Throwable] 
+ Throwable:
+Message: Failed opening required 'api/src/model/dao/ClienteDAO.php' (include_path='C:\xampp\php\PEAR')
+Code: 0
+File: C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\middlewares\ClienteMiddleware.php
+Line: 131
+Trace:
+#0 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Roteador.php(113): ClienteMiddleware->hasNotClienteByEmail('joao@exemplo.co...')
+#1 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Router.php(458): Roteador->{closure}()
+#2 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#3 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Router.php(287): Router->handle(Array, true)
+#4 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Roteador.php(370): Router->run()
+#5 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api.php(24): Roteador->start()
+#6 {main} 
+ **************************************************************************************************** 
+[2025-05-29 23:21:05.000] [Throwable] 
+ Throwable:
+Message: Failed opening required 'api/src/model/dao/ClienteDAO.php' (include_path='C:\xampp\php\PEAR')
+Code: 0
+File: C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\middlewares\ClienteMiddleware.php
+Line: 131
+Trace:
+#0 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Roteador.php(113): ClienteMiddleware->hasNotClienteByEmail('fulano@exemplo....')
+#1 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Router.php(458): Roteador->{closure}()
+#2 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#3 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Router.php(287): Router->handle(Array, true)
+#4 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Roteador.php(370): Router->run()
+#5 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api.php(24): Roteador->start()
+#6 {main} 
+ **************************************************************************************************** 
+[2025-05-29 23:21:06.000] [Throwable] 
+ Throwable:
+Message: Failed opening required 'api/src/model/dao/ClienteDAO.php' (include_path='C:\xampp\php\PEAR')
+Code: 0
+File: C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\middlewares\ClienteMiddleware.php
+Line: 131
+Trace:
+#0 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Roteador.php(113): ClienteMiddleware->hasNotClienteByEmail('fulano@exemplo....')
+#1 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Router.php(458): Roteador->{closure}()
+#2 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#3 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Router.php(287): Router->handle(Array, true)
+#4 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Roteador.php(370): Router->run()
+#5 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api.php(24): Roteador->start()
+#6 {main} 
+ **************************************************************************************************** 
+[2025-05-29 23:21:07.000] [Throwable] 
+ Throwable:
+Message: Failed opening required 'api/src/model/dao/ClienteDAO.php' (include_path='C:\xampp\php\PEAR')
+Code: 0
+File: C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\middlewares\ClienteMiddleware.php
+Line: 131
+Trace:
+#0 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Roteador.php(113): ClienteMiddleware->hasNotClienteByEmail('fulano@exemplo....')
+#1 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Router.php(458): Roteador->{closure}()
+#2 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#3 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Router.php(287): Router->handle(Array, true)
+#4 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Roteador.php(370): Router->run()
+#5 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api.php(24): Roteador->start()
+#6 {main} 
+ **************************************************************************************************** 
+[2025-05-29 23:23:11.000] [Throwable] 
+ Throwable:
+Message: Failed opening required 'api/src/model/dao/ClienteDAO.php' (include_path='C:\xampp\php\PEAR')
+Code: 0
+File: C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\middlewares\ClienteMiddleware.php
+Line: 131
+Trace:
+#0 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Roteador.php(113): ClienteMiddleware->hasNotClienteByEmail('fulano@exemplo....')
+#1 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Router.php(458): Roteador->{closure}()
+#2 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#3 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Router.php(287): Router->handle(Array, true)
+#4 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Roteador.php(370): Router->run()
+#5 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api.php(24): Roteador->start()
+#6 {main} 
+ **************************************************************************************************** 
+[2025-05-29 23:23:24.000] [Throwable] 
+ Throwable:
+Message: Failed opening required 'api/src/model/dao/ClienteDAO.php' (include_path='C:\xampp\php\PEAR')
+Code: 0
+File: C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\middlewares\ClienteMiddleware.php
+Line: 131
+Trace:
+#0 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Roteador.php(113): ClienteMiddleware->hasNotClienteByEmail('fulano@exemplo....')
+#1 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Router.php(458): Roteador->{closure}()
+#2 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#3 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Router.php(287): Router->handle(Array, true)
+#4 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Roteador.php(370): Router->run()
+#5 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api.php(24): Roteador->start()
+#6 {main} 
+ **************************************************************************************************** 
+[2025-05-29 23:25:57.000] [Throwable] 
+ Throwable:
+Message: Failed opening required 'api/src/model/dao/ClienteDAO.php' (include_path='C:\xampp\php\PEAR')
+Code: 0
+File: C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\middlewares\ClienteMiddleware.php
+Line: 131
+Trace:
+#0 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Roteador.php(113): ClienteMiddleware->hasNotClienteByEmail('email@valido.co...')
+#1 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Router.php(458): Roteador->{closure}()
+#2 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#3 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Router.php(287): Router->handle(Array, true)
+#4 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Roteador.php(370): Router->run()
+#5 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api.php(24): Roteador->start()
+#6 {main} 
+ **************************************************************************************************** 
+[2025-05-29 23:26:25.000] [Throwable] 
+ Throwable:
+Message: Failed opening required 'api/src/model/dao/ClienteDAO.php' (include_path='C:\xampp\php\PEAR')
+Code: 0
+File: C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\middlewares\ClienteMiddleware.php
+Line: 131
+Trace:
+#0 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Roteador.php(113): ClienteMiddleware->hasNotClienteByEmail('email@valido.co...')
+#1 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Router.php(458): Roteador->{closure}()
+#2 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#3 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Router.php(287): Router->handle(Array, true)
+#4 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api\src\routes\Roteador.php(370): Router->run()
+#5 C:\xampp\htdocs\API_CargoFuncionario_PHP8-main\api.php(24): Roteador->start()
+#6 {main} 
+ **************************************************************************************************** 
+[2025-06-05 23:25:40.000] [Throwable] 
+ Throwable:
+Message: Failed opening required 'api/src/model/dao/ClienteDAO.php' (include_path='C:\xampp\php\PEAR')
+Code: 0
+File: C:\xampp\htdocs\pjt\api\src\middlewares\ClienteMiddleware.php
+Line: 131
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(113): ClienteMiddleware->hasNotClienteByEmail('neymar@gmail.co...')
+#1 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}()
+#2 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#3 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#4 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(370): Router->run()
+#5 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#6 {main} 
+ **************************************************************************************************** 
+[2025-08-26 20:21:05.000] [Throwable] 
+ Throwable:
+Message: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`pjt2b`.`pedidos`, CONSTRAINT `fk_pedidos_clientes` FOREIGN KEY (`clientes_idclientes`) REFERENCES `clientes` (`idclientes`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+Code: 23000
+File: C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php
+Line: 45
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php(45): PDOStatement->execute()
+#1 C:\xampp\htdocs\pjt\api\src\controllers\ClienteControl.php(169): ClienteDAO->delete(11)
+#2 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(151): ClienteControl->destroy(11)
+#3 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}('11')
+#4 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#5 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#6 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(373): Router->run()
+#7 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#8 {main} 
+ **************************************************************************************************** 
+[2025-08-26 20:21:11.000] [Throwable] 
+ Throwable:
+Message: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`pjt2b`.`pedidos`, CONSTRAINT `fk_pedidos_clientes` FOREIGN KEY (`clientes_idclientes`) REFERENCES `clientes` (`idclientes`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+Code: 23000
+File: C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php
+Line: 45
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php(45): PDOStatement->execute()
+#1 C:\xampp\htdocs\pjt\api\src\controllers\ClienteControl.php(169): ClienteDAO->delete(11)
+#2 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(151): ClienteControl->destroy(11)
+#3 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}('11')
+#4 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#5 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#6 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(373): Router->run()
+#7 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#8 {main} 
+ **************************************************************************************************** 
+[2025-08-26 20:21:40.000] [Throwable] 
+ Throwable:
+Message: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`pjt2b`.`pedidos`, CONSTRAINT `fk_pedidos_clientes` FOREIGN KEY (`clientes_idclientes`) REFERENCES `clientes` (`idclientes`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+Code: 23000
+File: C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php
+Line: 45
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php(45): PDOStatement->execute()
+#1 C:\xampp\htdocs\pjt\api\src\controllers\ClienteControl.php(169): ClienteDAO->delete(11)
+#2 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(151): ClienteControl->destroy(11)
+#3 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}('11')
+#4 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#5 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#6 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(373): Router->run()
+#7 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#8 {main} 
+ **************************************************************************************************** 
+[2025-08-26 20:22:08.000] [Throwable] 
+ Throwable:
+Message: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`pjt2b`.`pedidos`, CONSTRAINT `fk_pedidos_clientes` FOREIGN KEY (`clientes_idclientes`) REFERENCES `clientes` (`idclientes`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+Code: 23000
+File: C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php
+Line: 45
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php(45): PDOStatement->execute()
+#1 C:\xampp\htdocs\pjt\api\src\controllers\ClienteControl.php(169): ClienteDAO->delete(11)
+#2 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(151): ClienteControl->destroy(11)
+#3 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}('11')
+#4 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#5 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#6 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(373): Router->run()
+#7 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#8 {main} 
+ **************************************************************************************************** 
+[2025-08-26 20:23:21.000] [Throwable] 
+ Throwable:
+Message: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`pjt2b`.`pedidos`, CONSTRAINT `fk_pedidos_clientes` FOREIGN KEY (`clientes_idclientes`) REFERENCES `clientes` (`idclientes`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+Code: 23000
+File: C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php
+Line: 45
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php(45): PDOStatement->execute()
+#1 C:\xampp\htdocs\pjt\api\src\controllers\ClienteControl.php(169): ClienteDAO->delete(15)
+#2 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(151): ClienteControl->destroy(15)
+#3 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}('15')
+#4 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#5 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#6 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(373): Router->run()
+#7 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#8 {main} 
+ **************************************************************************************************** 
+[2025-08-26 20:25:20.000] [Throwable] 
+ Throwable:
+Message: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`pjt2b`.`pedidos`, CONSTRAINT `fk_pedidos_clientes` FOREIGN KEY (`clientes_idclientes`) REFERENCES `clientes` (`idclientes`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+Code: 23000
+File: C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php
+Line: 45
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php(45): PDOStatement->execute()
+#1 C:\xampp\htdocs\pjt\api\src\controllers\ClienteControl.php(169): ClienteDAO->delete(4)
+#2 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(151): ClienteControl->destroy(4)
+#3 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}('4')
+#4 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#5 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#6 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(373): Router->run()
+#7 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#8 {main} 
+ **************************************************************************************************** 
+[2025-08-26 20:25:36.000] [Throwable] 
+ Throwable:
+Message: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`pjt2b`.`pedidos`, CONSTRAINT `fk_pedidos_clientes` FOREIGN KEY (`clientes_idclientes`) REFERENCES `clientes` (`idclientes`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+Code: 23000
+File: C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php
+Line: 45
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php(45): PDOStatement->execute()
+#1 C:\xampp\htdocs\pjt\api\src\controllers\ClienteControl.php(169): ClienteDAO->delete(15)
+#2 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(151): ClienteControl->destroy(15)
+#3 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}('15')
+#4 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#5 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#6 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(373): Router->run()
+#7 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#8 {main} 
+ **************************************************************************************************** 
+[2025-08-26 20:31:13.000] [Throwable] 
+ Throwable:
+Message: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`pjt2b`.`pedidos`, CONSTRAINT `fk_pedidos_clientes` FOREIGN KEY (`clientes_idclientes`) REFERENCES `clientes` (`idclientes`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+Code: 23000
+File: C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php
+Line: 45
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php(45): PDOStatement->execute()
+#1 C:\xampp\htdocs\pjt\api\src\controllers\ClienteControl.php(169): ClienteDAO->delete(4)
+#2 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(151): ClienteControl->destroy(4)
+#3 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}('4')
+#4 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#5 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#6 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(373): Router->run()
+#7 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#8 {main} 
+ **************************************************************************************************** 
+[2025-08-26 20:31:13.000] [Throwable] 
+ Throwable:
+Message: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`pjt2b`.`pedidos`, CONSTRAINT `fk_pedidos_clientes` FOREIGN KEY (`clientes_idclientes`) REFERENCES `clientes` (`idclientes`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+Code: 23000
+File: C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php
+Line: 45
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php(45): PDOStatement->execute()
+#1 C:\xampp\htdocs\pjt\api\src\controllers\ClienteControl.php(169): ClienteDAO->delete(4)
+#2 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(151): ClienteControl->destroy(4)
+#3 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}('4')
+#4 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#5 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#6 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(373): Router->run()
+#7 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#8 {main} 
+ **************************************************************************************************** 
+[2025-08-26 20:31:41.000] [Throwable] 
+ Throwable:
+Message: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`pjt2b`.`pedidos`, CONSTRAINT `fk_pedidos_clientes` FOREIGN KEY (`clientes_idclientes`) REFERENCES `clientes` (`idclientes`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+Code: 23000
+File: C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php
+Line: 45
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php(45): PDOStatement->execute()
+#1 C:\xampp\htdocs\pjt\api\src\controllers\ClienteControl.php(169): ClienteDAO->delete(4)
+#2 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(151): ClienteControl->destroy(4)
+#3 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}('4')
+#4 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#5 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#6 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(373): Router->run()
+#7 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#8 {main} 
+ **************************************************************************************************** 
+[2025-08-26 20:31:41.000] [Throwable] 
+ Throwable:
+Message: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`pjt2b`.`pedidos`, CONSTRAINT `fk_pedidos_clientes` FOREIGN KEY (`clientes_idclientes`) REFERENCES `clientes` (`idclientes`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+Code: 23000
+File: C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php
+Line: 45
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php(45): PDOStatement->execute()
+#1 C:\xampp\htdocs\pjt\api\src\controllers\ClienteControl.php(169): ClienteDAO->delete(4)
+#2 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(151): ClienteControl->destroy(4)
+#3 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}('4')
+#4 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#5 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#6 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(373): Router->run()
+#7 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#8 {main} 
+ **************************************************************************************************** 
+[2025-08-26 20:32:00.000] [Throwable] 
+ Throwable:
+Message: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`pjt2b`.`pedidos`, CONSTRAINT `fk_pedidos_clientes` FOREIGN KEY (`clientes_idclientes`) REFERENCES `clientes` (`idclientes`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+Code: 23000
+File: C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php
+Line: 45
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php(45): PDOStatement->execute()
+#1 C:\xampp\htdocs\pjt\api\src\controllers\ClienteControl.php(169): ClienteDAO->delete(15)
+#2 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(151): ClienteControl->destroy(15)
+#3 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}('15')
+#4 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#5 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#6 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(373): Router->run()
+#7 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#8 {main} 
+ **************************************************************************************************** 
+[2025-08-26 20:32:00.000] [Throwable] 
+ Throwable:
+Message: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`pjt2b`.`pedidos`, CONSTRAINT `fk_pedidos_clientes` FOREIGN KEY (`clientes_idclientes`) REFERENCES `clientes` (`idclientes`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+Code: 23000
+File: C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php
+Line: 45
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php(45): PDOStatement->execute()
+#1 C:\xampp\htdocs\pjt\api\src\controllers\ClienteControl.php(169): ClienteDAO->delete(15)
+#2 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(151): ClienteControl->destroy(15)
+#3 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}('15')
+#4 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#5 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#6 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(373): Router->run()
+#7 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#8 {main} 
+ **************************************************************************************************** 
+[2025-08-26 20:32:19.000] [Throwable] 
+ Throwable:
+Message: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`pjt2b`.`pedidos`, CONSTRAINT `fk_pedidos_clientes` FOREIGN KEY (`clientes_idclientes`) REFERENCES `clientes` (`idclientes`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+Code: 23000
+File: C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php
+Line: 45
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php(45): PDOStatement->execute()
+#1 C:\xampp\htdocs\pjt\api\src\controllers\ClienteControl.php(169): ClienteDAO->delete(12)
+#2 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(151): ClienteControl->destroy(12)
+#3 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}('12')
+#4 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#5 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#6 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(373): Router->run()
+#7 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#8 {main} 
+ **************************************************************************************************** 
+[2025-08-26 20:32:19.000] [Throwable] 
+ Throwable:
+Message: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`pjt2b`.`pedidos`, CONSTRAINT `fk_pedidos_clientes` FOREIGN KEY (`clientes_idclientes`) REFERENCES `clientes` (`idclientes`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+Code: 23000
+File: C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php
+Line: 45
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php(45): PDOStatement->execute()
+#1 C:\xampp\htdocs\pjt\api\src\controllers\ClienteControl.php(169): ClienteDAO->delete(12)
+#2 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(151): ClienteControl->destroy(12)
+#3 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}('12')
+#4 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#5 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#6 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(373): Router->run()
+#7 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#8 {main} 
+ **************************************************************************************************** 
+[2025-08-26 21:57:17.000] [Throwable] 
+ Throwable:
+Message: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`pjt2b`.`pedidos`, CONSTRAINT `fk_pedidos_clientes` FOREIGN KEY (`clientes_idclientes`) REFERENCES `clientes` (`idclientes`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+Code: 23000
+File: C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php
+Line: 45
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php(45): PDOStatement->execute()
+#1 C:\xampp\htdocs\pjt\api\src\controllers\ClienteControl.php(170): ClienteDAO->delete(1)
+#2 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(151): ClienteControl->destroy(1)
+#3 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}('1')
+#4 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#5 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#6 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(373): Router->run()
+#7 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#8 {main} 
+ **************************************************************************************************** 
+[2025-08-26 21:57:17.000] [Throwable] 
+ Throwable:
+Message: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`pjt2b`.`pedidos`, CONSTRAINT `fk_pedidos_clientes` FOREIGN KEY (`clientes_idclientes`) REFERENCES `clientes` (`idclientes`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+Code: 23000
+File: C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php
+Line: 45
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\DAO\ClienteDAO.php(45): PDOStatement->execute()
+#1 C:\xampp\htdocs\pjt\api\src\controllers\ClienteControl.php(170): ClienteDAO->delete(1)
+#2 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(151): ClienteControl->destroy(1)
+#3 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}('1')
+#4 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#5 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#6 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(373): Router->run()
+#7 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#8 {main} 
+ **************************************************************************************************** 
+[2025-08-26 23:05:16.000] [Throwable] 
+ Throwable:
+Message: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`pjt2b`.`pedidos`, CONSTRAINT `fk_pedidos_produtos1` FOREIGN KEY (`produtos_idprodutos`) REFERENCES `produtos` (`idprodutos`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+Code: 23000
+File: C:\xampp\htdocs\pjt\api\src\DAO\ProdutoDAO.php
+Line: 45
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\DAO\ProdutoDAO.php(45): PDOStatement->execute()
+#1 C:\xampp\htdocs\pjt\api\src\controllers\ProdutoControl.php(120): ProdutoDAO->delete(8)
+#2 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(247): ProdutoControl->destroy(8)
+#3 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}('8')
+#4 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#5 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#6 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(373): Router->run()
+#7 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#8 {main} 
+ **************************************************************************************************** 
+[2025-08-26 23:06:00.000] [Throwable] 
+ Throwable:
+Message: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '4' for key 'PRIMARY'
+Code: 23000
+File: C:\xampp\htdocs\pjt\api\src\DAO\ProdutoDAO.php
+Line: 36
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\DAO\ProdutoDAO.php(36): PDOStatement->execute()
+#1 C:\xampp\htdocs\pjt\api\src\DAO\ProdutoDAO.php(12): ProdutoDAO->createWithId(Object(Produto))
+#2 C:\xampp\htdocs\pjt\api\src\controllers\ProdutoControl.php(75): ProdutoDAO->create(Object(Produto))
+#3 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(211): ProdutoControl->store(Object(stdClass))
+#4 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}()
+#5 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#6 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#7 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(373): Router->run()
+#8 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#9 {main} 
+ **************************************************************************************************** 
+[2025-08-28 20:23:53.000] [Throwable] 
+ Throwable:
+Message: Class "LogarControl" not found
+Code: 0
+File: C:\xampp\htdocs\pjt\api\src\routes\Roteador.php
+Line: 371
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}()
+#1 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#2 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#3 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(417): Router->run()
+#4 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#5 {main} 
+ **************************************************************************************************** 
+[2025-08-28 20:24:29.000] [Throwable] 
+ Throwable:
+Message: Class "LogarControl" not found
+Code: 0
+File: C:\xampp\htdocs\pjt\api\src\routes\Roteador.php
+Line: 371
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}()
+#1 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#2 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#3 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(417): Router->run()
+#4 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#5 {main} 
+ **************************************************************************************************** 
+[2025-08-28 20:24:32.000] [Throwable] 
+ Throwable:
+Message: Class "LogarControl" not found
+Code: 0
+File: C:\xampp\htdocs\pjt\api\src\routes\Roteador.php
+Line: 371
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}()
+#1 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#2 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#3 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(417): Router->run()
+#4 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#5 {main} 
+ **************************************************************************************************** 
+[2025-08-28 20:28:31.000] [Throwable] 
+ Throwable:
+Message: Class "LogarControl" not found
+Code: 0
+File: C:\xampp\htdocs\pjt\api\src\routes\Roteador.php
+Line: 375
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}()
+#1 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#2 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#3 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(421): Router->run()
+#4 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#5 {main} 
+ **************************************************************************************************** 
+[2025-08-28 20:28:32.000] [Throwable] 
+ Throwable:
+Message: Class "LogarControl" not found
+Code: 0
+File: C:\xampp\htdocs\pjt\api\src\routes\Roteador.php
+Line: 375
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}()
+#1 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#2 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#3 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(421): Router->run()
+#4 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#5 {main} 
+ **************************************************************************************************** 
+[2025-08-28 20:33:17.000] [Throwable] 
+ Throwable:
+Message: LogarControl::login(): Argument #1 ($credenciais) must be of type stdClass, null given, called in C:\xampp\htdocs\pjt\api\src\routes\Roteador.php on line 376
+Code: 0
+File: C:\xampp\htdocs\pjt\api\src\controllers\LogarControl.php
+Line: 10
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(376): LogarControl->login(NULL)
+#1 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}()
+#2 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#3 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#4 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(421): Router->run()
+#5 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#6 {main} 
+ **************************************************************************************************** 
+[2025-08-28 21:40:45.000] [Throwable] 
+ Throwable:
+Message: Object of class Logar could not be converted to string
+Code: 0
+File: C:\xampp\htdocs\pjt\api\src\DAO\LogarDAO.php
+Line: 84
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\controllers\LogarControl.php(23): LogarDAO->autenticar('pires@gmail.com', '1234')
+#1 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(376): LogarControl->login(Object(stdClass))
+#2 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}()
+#3 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#4 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#5 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(421): Router->run()
+#6 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#7 {main} 
+ **************************************************************************************************** 
+[2025-08-28 22:25:25.000] [Throwable] 
+ Throwable:
+Message: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'nome' in 'field list'
+Code: 42S22
+File: C:\xampp\htdocs\pjt\api\src\DAO\LogarDAO.php
+Line: 15
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\DAO\LogarDAO.php(15): PDOStatement->execute()
+#1 C:\xampp\htdocs\pjt\api\src\controllers\LogarControl.php(18): LoginDAO->verificarLogin(Object(Usuario))
+#2 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(380): LoginControl->autenticar(Object(stdClass))
+#3 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}()
+#4 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#5 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#6 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(412): Router->run()
+#7 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#8 {main} 
+ **************************************************************************************************** 
+[2025-08-28 22:28:18.000] [Throwable] 
+ Throwable:
+Message: Cannot assign int to property Usuario::$senha of type string
+Code: 0
+File: C:\xampp\htdocs\pjt\api\src\models\Logar.php
+Line: 31
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\controllers\LogarControl.php(16): Usuario->setSenha(123456)
+#1 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(380): LoginControl->autenticar(Object(stdClass))
+#2 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}()
+#3 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#4 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#5 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(412): Router->run()
+#6 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#7 {main} 
+ **************************************************************************************************** 
+[2025-08-28 22:33:49.000] [Throwable] 
+ Throwable:
+Message: Call to undefined method Usuario::getNivelAcesso()
+Code: 0
+File: C:\xampp\htdocs\pjt\api\src\controllers\LogarControl.php
+Line: 30
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(380): LoginControl->autenticar(Object(stdClass))
+#1 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}()
+#2 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#3 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#4 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(412): Router->run()
+#5 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#6 {main} 
+ **************************************************************************************************** 
+[2025-08-28 22:35:36.000] [Throwable] 
+ Throwable:
+Message: Call to undefined method Usuario::getNivelAcesso()
+Code: 0
+File: C:\xampp\htdocs\pjt\api\src\controllers\LogarControl.php
+Line: 30
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(380): LoginControl->autenticar(Object(stdClass))
+#1 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}()
+#2 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#3 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#4 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(412): Router->run()
+#5 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#6 {main} 
+ **************************************************************************************************** 
+[2025-08-28 23:58:46.000] [Throwable] 
+ Throwable:
+Message: Class "JWTMiddleware" not found
+Code: 0
+File: C:\xampp\htdocs\pjt\api\src\routes\Roteador.php
+Line: 370
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}()
+#1 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#2 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#3 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(451): Router->run()
+#4 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#5 {main} 
+ **************************************************************************************************** 
+[2025-08-28 23:59:26.000] [Throwable] 
+ Throwable:
+Message: Class "JWTMiddleware" not found
+Code: 0
+File: C:\xampp\htdocs\pjt\api\src\routes\Roteador.php
+Line: 370
+Trace:
+#0 C:\xampp\htdocs\pjt\api\src\routes\Router.php(458): Roteador->{closure}()
+#1 C:\xampp\htdocs\pjt\api\src\routes\Router.php(440): Router->invoke(Object(Closure), Array)
+#2 C:\xampp\htdocs\pjt\api\src\routes\Router.php(287): Router->handle(Array, true)
+#3 C:\xampp\htdocs\pjt\api\src\routes\Roteador.php(451): Router->run()
+#4 C:\xampp\htdocs\pjt\api.php(24): Roteador->start()
+#5 {main} 
+ **************************************************************************************************** 

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>CRUD Pedidos com ApiService</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    body {
+      padding: 2em;
+      background-color: #f8f9fa;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .card {
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      border: none;
+      border-radius: 10px;
+    }
+    .card-header {
+      border-radius: 10px 10px 0 0 !important;
+    }
+    table {
+      margin-top: 1em;
+      width: 100%;
+    }
+    .btn {
+      margin-right: 5px;
+      margin-bottom: 5px;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+    .action-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    .table-actions {
+      display: flex;
+      gap: 5px;
+    }
+    .form-control {
+      border-radius: 6px;
+      padding: 10px;
+    }
+    h1, h5 {
+      color: #2c3e50;
+    }
+    .alert {
+      border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body class="container">
+  <div class="card">
+    <div class="card-header bg-warning text-dark">
+      <h1 class="mb-0"><i class="fas fa-shopping-cart me-2"></i>Gerenciamento de Pedidos</h1>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="mb-3">
+            <label for="txtId" class="form-label">ID do Pedido</label>
+            <input type="number" id="txtId" class="form-control mb-2" placeholder="ID do pedido" min="1" />
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="mb-3">
+            <label for="txtDataPedido" class="form-label">Data do Pedido</label>
+            <input type="date" id="txtDataPedido" class="form-control mb-2" />
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="mb-3">
+            <label for="txtClienteId" class="form-label">ID do Cliente</label>
+            <input type="number" id="txtClienteId" class="form-control mb-2" placeholder="ID cliente" min="1" />
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="mb-3">
+            <label for="txtProdutoId" class="form-label">ID do Produto</label>
+            <input type="number" id="txtProdutoId" class="form-control mb-2" placeholder="ID produto" min="1" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="mb-3">
+            <label class="form-label">Ações</label>
+            <div class="action-buttons" id="divBotoes"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="divResposta" class="alert d-none"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header bg-light">
+      <h5 class="mb-0"><i class="fas fa-list me-2"></i>Lista de Pedidos</h5>
+    </div>
+    <div class="card-body">
+      <div id="divTabela" class="table-responsive">
+        <p class="text-center text-muted">Clique em "Listar Pedidos" para carregar os dados</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script type="module">
+    // ========== SEÇÃO DE AUTENTICAÇÃO E TOKEN ==========
+    // Recuperar token do localStorage
+    const token = localStorage.getItem("token");
+    
+    // Verificar se há token, se não houver, redirecionar para login
+    if (!token) {
+      console.warn("Token não encontrado. Redirecionando para login...");
+      alert("Sessão expirada. Faça login novamente.");
+      window.location.href = "Login.html";
+    }
+
+    // Instancia o serviço com o token
+    import ApiService from './ApiService.js';
+    const api = new ApiService(token);
+
+    // ========== VARIÁVEIS GLOBAIS E REFERÊNCIAS DOM ==========
+    let API_DATA;
+    const txtId = document.getElementById("txtId");
+    const txtDataPedido = document.getElementById("txtDataPedido");
+    const txtClienteId = document.getElementById("txtClienteId");
+    const txtProdutoId = document.getElementById("txtProdutoId");
+    const divBotoes = document.getElementById("divBotoes");
+    const divResposta = document.getElementById("divResposta");
+    const divTabela = document.getElementById("divTabela");
+
+    // ========== CRIAÇÃO DE BOTÕES ==========
+    function createButton(text, className, icon = "") {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.innerHTML = icon ? `<i class="${icon} me-1"></i> ${text}` : text;
+      btn.className = `btn ${className}`;
+      return btn;
+    }
+
+    // Botão Buscar por ID
+    const btnBuscar = createButton("Buscar por ID", "btn-info", "fas fa-search");
+    btnBuscar.onclick = async function() {
+      const id = txtId.value.trim();
+      if (!id) {
+        showResponse("Digite um ID para buscar", "warning");
+        return;
+      }
+
+      try {
+        showResponse("Buscando pedido...", "info");
+        const pedido = await api.getById("/pjt/pedidos", id);
+        
+        if (pedido && pedido.success) {
+          showResponse("Pedido encontrado com sucesso", "success");
+          listID(id);
+        } else {
+          showResponse("Pedido não encontrado", "warning");
+          clearForm();
+        }
+      } catch (error) {
+        console.error("Erro ao buscar pedido:", error);
+        if (error.message.includes("Token") || error.message.includes("401")) {
+          handleTokenError();
+        } else {
+          showResponse("Erro ao buscar pedido: " + error.message, "danger");
+        }
+      }
+    };
+    divBotoes.appendChild(btnBuscar);
+
+    // Botão Listar
+    const btnListar = createButton("Listar Pedidos", "btn-primary", "fas fa-list");
+    btnListar.onclick = async function() {
+      await listAll();
+    };
+    divBotoes.appendChild(btnListar);
+
+    // Botão Criar
+    const btnCriar = createButton("Criar Pedido", "btn-success", "fas fa-plus");
+    btnCriar.onclick = async function() {
+      const id = txtId.value.trim();
+      const data = txtDataPedido.value.trim();
+      const clienteId = txtClienteId.value.trim();
+      const produtoId = txtProdutoId.value.trim();
+
+      if (!id || !data || !clienteId || !produtoId) {
+        showResponse("Todos os campos são obrigatórios", "warning");
+        return;
+      }
+
+      const pedidoData = {
+        pedido: {
+          idpedidos: parseInt(id),
+          data_pedido: data,
+          clientes_idclientes: parseInt(clienteId),
+          produtos_idprodutos: parseInt(produtoId)
+        }
+      };
+
+      try {
+        showResponse("Criando pedido...", "info");
+        await api.post("/pjt/pedidos", pedidoData);
+        showResponse("Pedido criado com sucesso", "success");
+        await listAll();
+        clearForm();
+      } catch (error) {
+        console.error("Erro ao criar pedido:", error);
+        if (error.message.includes("Token") || error.message.includes("401")) {
+          handleTokenError();
+        } else {
+          showResponse("Erro ao criar pedido: " + error.message, "danger");
+        }
+      }
+    };
+    divBotoes.appendChild(btnCriar);
+
+    // Botão Atualizar
+    const btnAtualizar = createButton("Atualizar Pedido", "btn-warning", "fas fa-edit");
+    btnAtualizar.onclick = async function() {
+      const id = txtId.value.trim();
+      const data = txtDataPedido.value.trim();
+      const clienteId = txtClienteId.value.trim();
+      const produtoId = txtProdutoId.value.trim();
+      
+      if (!id) {
+        showResponse("Digite um ID para atualizar", "warning");
+        return;
+      }
+
+      if (!data || !clienteId || !produtoId) {
+        showResponse("Todos os campos são obrigatórios", "warning");
+        return;
+      }
+
+      const pedidoData = {
+        pedido: {
+          data_pedido: data,
+          clientes_idclientes: parseInt(clienteId),
+          produtos_idprodutos: parseInt(produtoId)
+        }
+      };
+      
+      try {
+        showResponse("Atualizando pedido...", "info");
+        await api.put("/pjt/pedidos", id, pedidoData);
+        showResponse("Pedido atualizado com sucesso", "success");
+        await listAll();
+      } catch (error) {
+        console.error("Erro ao atualizar pedido:", error);
+        if (error.message.includes("Token") || error.message.includes("401")) {
+          handleTokenError();
+        } else {
+          showResponse("Erro ao atualizar pedido: " + error.message, "danger");
+        }
+      }
+    };
+    divBotoes.appendChild(btnAtualizar);
+
+    // Botão Excluir
+    const btnExcluir = createButton("Excluir Pedido", "btn-danger", "fas fa-trash");
+    btnExcluir.onclick = async function() {
+      const id = txtId.value.trim();
+      if (!id) {
+        showResponse("Digite um ID para excluir", "warning");
+        return;
+      }
+
+      if (confirm(`Tem certeza que deseja excluir o pedido com ID ${id}?`)) {
+        try {
+          showResponse("Excluindo pedido...", "info");
+          await api.delete("/pjt/pedidos", id);
+          showResponse("Pedido excluído com sucesso", "success");
+          await listAll();
+          clearForm();
+        } catch (error) {
+          console.error("Erro ao excluir pedido:", error);
+          if (error.message.includes("Token") || error.message.includes("401")) {
+            handleTokenError();
+          } else {
+            showResponse("Erro ao excluir pedido: " + error.message, "danger");
+          }
+        }
+      }
+    };
+    divBotoes.appendChild(btnExcluir);
+
+    // Botão Limpar
+    const btnLimpar = createButton("Limpar Campos", "btn-secondary", "fas fa-broom");
+    btnLimpar.onclick = function() {
+      clearForm();
+      showResponse("Campos limpos", "info");
+    };
+    divBotoes.appendChild(btnLimpar);
+
+    // ========== FUNÇÕES PRINCIPAIS ==========
+    /**
+     * Lista todos os pedidos - CONEXÃO COM API/BANCO
+     */
+    async function listAll() {
+      try {
+        showResponse("Carregando pedidos...", "info");
+        API_DATA = await api.get("/pjt/pedidos");
+        
+        if (API_DATA && API_DATA.success) {
+          renderTable(API_DATA);
+          showResponse("Pedidos carregados com sucesso", "success");
+        } else {
+          showResponse("Erro ao carregar pedidos", "danger");
+        }
+      } catch (error) {
+        console.error("Erro ao carregar pedidos:", error);
+        if (error.message.includes("Token") || error.message.includes("401")) {
+          handleTokenError();
+        } else {
+          showResponse("Erro ao carregar pedidos: " + error.message, "danger");
+        }
+      }
+    }
+
+    async function listID(id) {
+      try {
+        showResponse("Carregando pedido...", "info");
+        API_DATA = await api.getById("/pjt/pedidos", id);
+        
+        if (API_DATA && API_DATA.success) {
+          renderSinglePedido(API_DATA);
+          showResponse("Pedido carregado com sucesso", "success");
+        } else {
+          showResponse("Erro ao carregar pedido", "danger");
+        }
+      } catch (error) {
+        console.error("Erro ao carregar pedido:", error);
+        if (error.message.includes("Token") || error.message.includes("401")) {
+          handleTokenError();
+        } else {
+          showResponse("Erro ao carregar pedido: " + error.message, "danger");
+        }
+      }
+    }
+
+    function renderSinglePedido(dados) {
+      divTabela.innerHTML = "";
+
+      if (!dados || !dados.data || !dados.data.pedidos || dados.data.pedidos.length === 0) {
+        divTabela.innerHTML = '<div class="alert alert-info">Pedido não encontrado</div>';
+        return;
+      }
+
+      // Pega o primeiro pedido (já que é "single")
+      const pedido = dados.data.pedidos[0];
+
+      const table = document.createElement("table");
+      table.className = "table table-bordered table-striped table-hover";
+      
+      const thead = document.createElement("thead");
+      thead.className = "table-dark";
+      const trHead = document.createElement("tr");
+      ["ID Pedido", "Data", "Cliente", "Produto", "Ações"].forEach(text => {
+        const th = document.createElement("th");
+        th.textContent = text;
+        trHead.appendChild(th);
+      });
+      thead.appendChild(trHead);
+      table.appendChild(thead);
+
+      const tbody = document.createElement("tbody");
+      const tr = document.createElement("tr");
+
+      // ID do pedido
+      const tdId = document.createElement("td");
+      tdId.textContent = pedido.idpedidos;
+      tr.appendChild(tdId);
+
+      // Data do pedido
+      const tdData = document.createElement("td");
+      tdData.textContent = new Date(pedido.data_pedido).toLocaleDateString('pt-BR');
+      tr.appendChild(tdData);
+
+      // Cliente (nome + email)
+      const tdCliente = document.createElement("td");
+      if (pedido.cliente && pedido.cliente.nome_cliente && pedido.cliente.email_cliente) {
+        tdCliente.textContent = `${pedido.cliente.nome_cliente} (${pedido.cliente.email_cliente})`;
+      } else {
+        tdCliente.textContent = `Cliente ID: ${pedido.clientes_idclientes || 'N/A'}`;
+      }
+      tr.appendChild(tdCliente);
+
+      // Produto (nome + preço)
+      const tdProduto = document.createElement("td");
+      if (pedido.produto && pedido.produto.nome_produto && pedido.produto.preco_produto) {
+        tdProduto.textContent = `${pedido.produto.nome_produto} - R$ ${pedido.produto.preco_produto}`;
+      } else {
+        tdProduto.textContent = `Produto ID: ${pedido.produtos_idprodutos || 'N/A'}`;
+      }
+      tr.appendChild(tdProduto);
+
+      // Ações
+      const tdAcoes = document.createElement("td");
+      tdAcoes.className = "table-actions";
+
+      const btnSel = createButton("Selecionar", "btn-sm btn-info", "fas fa-edit");
+      btnSel.onclick = function () {
+        txtId.value = pedido.idpedidos;
+        txtDataPedido.value = pedido.data_pedido;
+        txtClienteId.value = pedido.cliente ? pedido.cliente.idclientes : pedido.clientes_idclientes;
+        txtProdutoId.value = pedido.produto ? pedido.produto.idprodutos : pedido.produtos_idprodutos;
+        showResponse("Pedido selecionado. Agora você pode atualizar ou excluir.", "info");
+      };
+      tdAcoes.appendChild(btnSel);
+
+      tr.appendChild(tdAcoes);
+      tbody.appendChild(tr);
+
+      table.appendChild(tbody);
+      divTabela.appendChild(table);
+    }
+
+    function renderTable(dados) {
+      divTabela.innerHTML = "";
+
+      if (!dados || !dados.data || !dados.data.pedidos || dados.data.pedidos.length === 0) {
+        divTabela.innerHTML = '<div class="alert alert-info">Nenhum pedido encontrado</div>';
+        return;
+      }
+
+      const table = document.createElement("table");
+      table.className = "table table-bordered table-striped table-hover";
+
+      const thead = document.createElement("thead");
+      thead.className = "table-dark";
+      const trHead = document.createElement("tr");
+      ["ID Pedido", "Data", "Cliente", "Produto", "Ações"].forEach(text => {
+        const th = document.createElement("th");
+        th.textContent = text;
+        trHead.appendChild(th);
+      });
+      thead.appendChild(trHead);
+      table.appendChild(thead);
+
+      const tbody = document.createElement("tbody");
+      dados.data.pedidos.forEach(pedido => {
+        const tr = document.createElement("tr");
+
+        // ID Pedido
+        const tdId = document.createElement("td");
+        tdId.textContent = pedido.idpedidos;
+        tr.appendChild(tdId);
+
+        // Data Pedido
+        const tdData = document.createElement("td");
+        tdData.textContent = new Date(pedido.data_pedido).toLocaleDateString('pt-BR');
+        tr.appendChild(tdData);
+
+        // Cliente
+        const tdCliente = document.createElement("td");
+        if (pedido.cliente && pedido.cliente.nome_cliente && pedido.cliente.email_cliente) {
+          tdCliente.textContent = `${pedido.cliente.nome_cliente} (${pedido.cliente.email_cliente})`;
+        } else {
+          tdCliente.textContent = `Cliente ID: ${pedido.clientes_idclientes || 'N/A'}`;
+        }
+        tr.appendChild(tdCliente);
+
+        // Produto
+        const tdProduto = document.createElement("td");
+        if (pedido.produto && pedido.produto.nome_produto && pedido.produto.preco_produto) {
+          tdProduto.textContent = `${pedido.produto.nome_produto} - R$ ${pedido.produto.preco_produto}`;
+        } else {
+          tdProduto.textContent = `Produto ID: ${pedido.produtos_idprodutos || 'N/A'}`;
+        }
+        tr.appendChild(tdProduto);
+
+        // Ações
+        const tdAcoes = document.createElement("td");
+        tdAcoes.className = "table-actions";
+
+        const btnSel = createButton("Selecionar", "btn-sm btn-info", "fas fa-edit");
+        btnSel.onclick = function() {
+          txtId.value = pedido.idpedidos;
+          txtDataPedido.value = pedido.data_pedido;
+          txtClienteId.value = pedido.cliente ? pedido.cliente.idclientes : pedido.clientes_idclientes;
+          txtProdutoId.value = pedido.produto ? pedido.produto.idprodutos : pedido.produtos_idprodutos;
+          showResponse("Pedido selecionado. Agora você pode atualizar ou excluir.", "info");
+        };
+        tdAcoes.appendChild(btnSel);
+
+        tr.appendChild(tdAcoes);
+        tbody.appendChild(tr);
+      });
+
+      table.appendChild(tbody);
+      divTabela.appendChild(table);
+    }
+
+    function showResponse(message, type) {
+      if (message) {
+        divResposta.textContent = message;
+        divResposta.className = `alert alert-${type}`;
+        if (type === "success") {
+          setTimeout(() => {
+            divResposta.classList.add("d-none");
+          }, 5000);
+        }
+      } else {
+        divResposta.className = "d-none";
+      }
+    }
+
+    function clearForm() {
+      txtId.value = "";
+      txtDataPedido.value = "";
+      txtClienteId.value = "";
+      txtProdutoId.value = "";
+    }
+
+    /**
+     * Manipula erros de token
+     */
+    function handleTokenError() {
+      console.error("Erro de autenticação. Limpando dados e redirecionando...");
+      localStorage.removeItem("token");
+      localStorage.removeItem("userData");
+      alert("Sessão expirada. Faça login novamente.");
+      window.location.href = "Login.html";
+    }
+
+    // ========== INICIALIZAÇÃO ==========
+    showResponse("Digite um ID para buscar ou preencha os campos para criar um novo pedido", "info");
+    
+    // Carregar pedidos automaticamente ao abrir a página
+    document.addEventListener("DOMContentLoaded", function() {
+      listAll();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>CRUD Clientes com ApiService</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    body {
+      padding: 2em;
+      background-color: #f8f9fa;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .card {
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      border: none;
+      border-radius: 10px;
+    }
+    .card-header {
+      border-radius: 10px 10px 0 0 !important;
+    }
+    table {
+      margin-top: 1em;
+      width: 100%;
+    }
+    .btn {
+      margin-right: 5px;
+      margin-bottom: 5px;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+    .action-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    .table-actions {
+      display: flex;
+      gap: 5px;
+    }
+    .form-control {
+      border-radius: 6px;
+      padding: 10px;
+    }
+    h1, h5 {
+      color: #2c3e50;
+    }
+    .alert {
+      border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body class="container">
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h1 class="mb-0"><i class="fas fa-users me-2"></i>Gerenciamento de Clientes</h1>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="txtId" class="form-label">ID do Cliente</label>
+            <input type="number" id="txtId" class="form-control mb-2" placeholder="Digite o ID do cliente" min="1" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="txtNomeCliente" class="form-label">Nome do Cliente</label>
+            <input type="text" id="txtNomeCliente" class="form-control mb-2" placeholder="Nome completo" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="txtEmailCliente" class="form-label">Email do Cliente</label>
+            <input type="email" id="txtEmailCliente" class="form-control mb-2" placeholder="email@exemplo.com" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label class="form-label">Ações</label>
+            <div class="action-buttons" id="divBotoes"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="divResposta" class="alert d-none"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header bg-light">
+      <h5 class="mb-0"><i class="fas fa-list me-2"></i>Lista de Clientes</h5>
+    </div>
+    <div class="card-body">
+      <div id="divTabela" class="table-responsive">
+        <p class="text-center text-muted">Clique em "Listar Clientes" para carregar os dados</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script type="module">
+    // ========== SEÇÃO DE AUTENTICAÇÃO E TOKEN ==========
+    // Recuperar token do localStorage
+    const token = localStorage.getItem("token");
+    
+    // Verificar se há token, se não houver, redirecionar para login
+    if (!token) {
+      console.warn("Token não encontrado. Redirecionando para login...");
+      alert("Sessão expirada. Faça login novamente.");
+      window.location.href = "Login.html";
+    }
+
+    // Instancia o serviço com o token
+    import ApiService from './ApiService.js';
+    const api = new ApiService(token);
+
+    // ========== VARIÁVEIS GLOBAIS E REFERÊNCIAS DOM ==========
+    let API_DATA;
+    const txtId = document.getElementById("txtId");
+    const txtNomeCliente = document.getElementById("txtNomeCliente");
+    const txtEmailCliente = document.getElementById("txtEmailCliente");
+    const divBotoes = document.getElementById("divBotoes");
+    const divResposta = document.getElementById("divResposta");
+    const divTabela = document.getElementById("divTabela");
+
+    // ========== CRIAÇÃO DE BOTÕES ==========
+    function createButton(text, className, icon = "") {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.innerHTML = icon ? `<i class="${icon} me-1"></i> ${text}` : text;
+      btn.className = `btn ${className}`;
+      return btn;
+    }
+
+    // Botão Buscar por ID
+    const btnBuscar = createButton("Buscar por ID", "btn-info", "fas fa-search");
+    btnBuscar.onclick = async function() {
+      const id = txtId.value.trim();
+      if (!id) {
+        showResponse("Digite um ID para buscar", "warning");
+        return;
+      }
+
+      try {
+        showResponse("Buscando cliente...", "info");
+        const cliente = await api.getById("/pjt/clientes", id);
+        
+        if (cliente && cliente.success) {
+          showResponse("Cliente encontrado com sucesso", "success");
+          listID(id);
+        } else {
+          showResponse("Cliente não encontrado", "warning");
+          clearForm();
+        }
+      } catch (error) {
+        console.error("Erro ao buscar cliente:", error);
+        if (error.message.includes("Token") || error.message.includes("401")) {
+          handleTokenError();
+        } else {
+          showResponse("Erro ao buscar cliente: " + error.message, "danger");
+        }
+      }
+    };
+    divBotoes.appendChild(btnBuscar);
+
+    // Botão Listar
+    const btnListar = createButton("Listar Clientes", "btn-primary", "fas fa-list");
+    btnListar.onclick = async function() {
+      await listAll();
+    };
+    divBotoes.appendChild(btnListar);
+
+    // Botão Criar
+    const btnCriar = createButton("Criar Cliente", "btn-success", "fas fa-plus");
+    btnCriar.onclick = async function() {
+      const id = txtId.value.trim();
+      const nome = txtNomeCliente.value.trim();
+      const email = txtEmailCliente.value.trim();
+
+      if (!id || !nome || !email) {
+        showResponse("ID, nome e email são obrigatórios", "warning");
+        return;
+      }
+
+      if (!validateEmail(email)) {
+        showResponse("Digite um email válido", "warning");
+        return;
+      }
+
+      const clienteData = {
+        cliente: {
+          idclientes: parseInt(id),
+          nome_cliente: nome,
+          email_cliente: email
+        }
+      };
+
+      try {
+        showResponse("Criando cliente...", "info");
+        await api.post("/pjt/clientes", clienteData);
+        showResponse("Cliente criado com sucesso", "success");
+        await listAll();
+        clearForm();
+      } catch (error) {
+        console.error("Erro ao criar cliente:", error);
+        if (error.message.includes("Token") || error.message.includes("401")) {
+          handleTokenError();
+        } else {
+          showResponse("Erro ao criar cliente: " + error.message, "danger");
+        }
+      }
+    };
+    divBotoes.appendChild(btnCriar);
+
+    // Botão Atualizar
+    const btnAtualizar = createButton("Atualizar Cliente", "btn-warning", "fas fa-edit");
+    btnAtualizar.onclick = async function() {
+      const id = txtId.value.trim();
+      const nome = txtNomeCliente.value.trim();
+      const email = txtEmailCliente.value.trim();
+      
+      if (!id) {
+        showResponse("Digite um ID para atualizar", "warning");
+        return;
+      }
+
+      if (!nome || !email) {
+        showResponse("Nome e email são obrigatórios", "warning");
+        return;
+      }
+
+      if (!validateEmail(email)) {
+        showResponse("Digite um email válido", "warning");
+        return;
+      }
+
+      const clienteData = {
+        cliente: {
+          nome_cliente: nome,
+          email_cliente: email
+        }
+      };
+      
+      try {
+        showResponse("Atualizando cliente...", "info");
+        await api.put("/pjt/clientes", id, clienteData);
+        showResponse("Cliente atualizado com sucesso", "success");
+        await listAll();
+      } catch (error) {
+        console.error("Erro ao atualizar cliente:", error);
+        if (error.message.includes("Token") || error.message.includes("401")) {
+          handleTokenError();
+        } else {
+          showResponse("Erro ao atualizar cliente: " + error.message, "danger");
+        }
+      }
+    };
+    divBotoes.appendChild(btnAtualizar);
+
+    // Botão Excluir
+    const btnExcluir = createButton("Excluir Cliente", "btn-danger", "fas fa-trash");
+    btnExcluir.onclick = async function() {
+      const id = txtId.value.trim();
+      if (!id) {
+        showResponse("Digite um ID para excluir", "warning");
+        return;
+      }
+
+      if (confirm(`Tem certeza que deseja excluir o cliente com ID ${id}?`)) {
+        try {
+          showResponse("Excluindo cliente...", "info");
+          await api.delete("/pjt/clientes", id);
+          showResponse("Cliente excluído com sucesso", "success");
+          await listAll();
+          clearForm();
+        } catch (error) {
+          console.error("Erro ao excluir cliente:", error);
+          if (error.message.includes("Token") || error.message.includes("401")) {
+            handleTokenError();
+          } else {
+            showResponse("Erro ao excluir cliente: " + error.message, "danger");
+          }
+        }
+      }
+    };
+    divBotoes.appendChild(btnExcluir);
+
+    // Botão Limpar
+    const btnLimpar = createButton("Limpar Campos", "btn-secondary", "fas fa-broom");
+    btnLimpar.onclick = function() {
+      clearForm();
+      showResponse("Campos limpos", "info");
+    };
+    divBotoes.appendChild(btnLimpar);
+
+    // ========== FUNÇÕES PRINCIPAIS ==========
+    /**
+     * Lista todos os clientes - CONEXÃO COM API/BANCO
+     */
+    async function listAll() {
+      try {
+        showResponse("Carregando clientes...", "info");
+        API_DATA = await api.get("/pjt/clientes");
+        
+        if (API_DATA && API_DATA.success) {
+          renderTable(API_DATA);
+          showResponse("Clientes carregados com sucesso", "success");
+        } else {
+          showResponse("Erro ao carregar clientes", "danger");
+        }
+      } catch (error) {
+        console.error("Erro ao carregar clientes:", error);
+        if (error.message.includes("Token") || error.message.includes("401")) {
+          handleTokenError();
+        } else {
+          showResponse("Erro ao carregar clientes: " + error.message, "danger");
+        }
+      }
+    }
+
+    async function listID(id) {
+      try {
+        showResponse("Carregando cliente...", "info");
+        API_DATA = await api.getById("/pjt/clientes", id);
+        
+        if (API_DATA && API_DATA.success) {
+          renderSingleCliente(API_DATA);
+          showResponse("Cliente carregado com sucesso", "success");
+        } else {
+          showResponse("Erro ao carregar cliente", "danger");
+        }
+      } catch (error) {
+        console.error("Erro ao carregar cliente:", error);
+        if (error.message.includes("Token") || error.message.includes("401")) {
+          handleTokenError();
+        } else {
+          showResponse("Erro ao carregar cliente: " + error.message, "danger");
+        }
+      }
+    }
+
+    function renderSingleCliente(dados) {
+      divTabela.innerHTML = "";
+
+      // Verificar se há dados
+      if (!dados || !dados.data || !dados.data.clientes) {
+        divTabela.innerHTML = '<div class="alert alert-info">Cliente não encontrado</div>';
+        return;
+      }
+
+      // CORREÇÃO: Acessar o cliente corretamente (pode ser array ou objeto)
+      const cliente = Array.isArray(dados.data.clientes) ? dados.data.clientes[0] : dados.data.clientes;
+
+      const table = document.createElement("table");
+      table.className = "table table-bordered table-striped table-hover";
+      
+      const thead = document.createElement("thead");
+      thead.className = "table-dark";
+      const trHead = document.createElement("tr");
+      ["ID", "Nome", "Email", "Ações"].forEach(text => {
+        const th = document.createElement("th");
+        th.textContent = text;
+        trHead.appendChild(th);
+      });
+      thead.appendChild(trHead);
+      table.appendChild(thead);
+
+      const tbody = document.createElement("tbody");
+      const tr = document.createElement("tr");
+
+      const tdId = document.createElement("td");
+      tdId.textContent = cliente.idclientes;
+      tr.appendChild(tdId);
+
+      // Coluna Nome
+      const tdNome = document.createElement("td");
+      tdNome.textContent = cliente.nome_cliente;
+      tr.appendChild(tdNome);
+
+      // Coluna Email
+      const tdEmail = document.createElement("td");
+      tdEmail.textContent = cliente.email_cliente;
+      tr.appendChild(tdEmail);
+
+      // Coluna Ações
+      const tdAcoes = document.createElement("td");
+      tdAcoes.className = "table-actions";
+
+      const btnSel = createButton("Selecionar", "btn-sm btn-info", "fas fa-edit");
+      btnSel.onclick = function() {
+        txtId.value = cliente.idclientes;
+        txtNomeCliente.value = cliente.nome_cliente;
+        txtEmailCliente.value = cliente.email_cliente;
+        showResponse("Cliente selecionado. Agora você pode atualizar ou excluir.", "info");
+      };
+      tdAcoes.appendChild(btnSel);
+
+      tr.appendChild(tdAcoes);
+      tbody.appendChild(tr);
+      
+      table.appendChild(tbody);
+      divTabela.appendChild(table);
+    }
+
+    /**
+     * Renderiza a tabela com dados dos clientes
+     */
+    function renderTable(dados) {
+      divTabela.innerHTML = "";
+
+      // Verifica se há dados e se a estrutura está correta
+      if (!dados || !dados.data || !dados.data.clientes || dados.data.clientes.length === 0) {
+        divTabela.innerHTML = '<div class="alert alert-info">Nenhum cliente encontrado</div>';
+        return;
+      }
+
+      const table = document.createElement("table");
+      table.className = "table table-bordered table-striped table-hover";
+
+      // Cabeçalho
+      const thead = document.createElement("thead");
+      thead.className = "table-dark";
+      const trHead = document.createElement("tr");
+      ["ID", "Nome", "Email", "Ações"].forEach(text => {
+        const th = document.createElement("th");
+        th.textContent = text;
+        trHead.appendChild(th);
+      });
+      thead.appendChild(trHead);
+      table.appendChild(thead);
+
+      // Corpo
+      const tbody = document.createElement("tbody");
+      dados.data.clientes.forEach(cliente => {
+        const tr = document.createElement("tr");
+
+        // Coluna ID
+        const tdId = document.createElement("td");
+        tdId.textContent = cliente.idclientes;
+        tr.appendChild(tdId);
+
+        // Coluna Nome
+        const tdNome = document.createElement("td");
+        tdNome.textContent = cliente.nome_cliente;
+        tr.appendChild(tdNome);
+
+        // Coluna Email
+        const tdEmail = document.createElement("td");
+        tdEmail.textContent = cliente.email_cliente;
+        tr.appendChild(tdEmail);
+
+        // Coluna Ações
+        const tdAcoes = document.createElement("td");
+        tdAcoes.className = "table-actions";
+
+        // Botão Selecionar
+        const btnSel = createButton("Selecionar", "btn-sm btn-info", "fas fa-edit");
+        btnSel.onclick = function() {
+          txtId.value = cliente.idclientes;
+          txtNomeCliente.value = cliente.nome_cliente;
+          txtEmailCliente.value = cliente.email_cliente;
+          showResponse("Cliente selecionado. Agora você pode atualizar ou excluir.", "info");
+        };
+        tdAcoes.appendChild(btnSel);
+
+        tr.appendChild(tdAcoes);
+        tbody.appendChild(tr);
+      });
+
+      table.appendChild(tbody);
+      divTabela.appendChild(table);
+    }
+
+    /**
+     * Valida formato de email
+     */
+    function validateEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
+    }
+
+    /**
+     * Exibe mensagens de resposta
+     */
+    function showResponse(message, type) {
+      if (message) {
+        divResposta.textContent = message;
+        divResposta.className = `alert alert-${type}`;
+        // Auto-esconder mensagens de sucesso após 5 segundos
+        if (type === "success") {
+          setTimeout(() => {
+            divResposta.classList.add("d-none");
+          }, 5000);
+        }
+      } else {
+        divResposta.className = "d-none";
+      }
+    }
+
+    /**
+     * Limpa o formulário
+     */
+    function clearForm() {
+      txtId.value = "";
+      txtNomeCliente.value = "";
+      txtEmailCliente.value = "";
+    }
+
+    /**
+     * Manipula erros de token
+     */
+    function handleTokenError() {
+      console.error("Erro de autenticação. Limpando dados e redirecionando...");
+      localStorage.removeItem("token");
+      localStorage.removeItem("userData");
+      alert("Sessão expirada. Faça login novamente.");
+      window.location.href = "Login.html";
+    }
+
+    // ========== INICIALIZAÇÃO ==========
+    showResponse("Digite um ID para buscar ou preencha os campos para criar um novo cliente", "info");
+    
+    // Carregar clientes automaticamente ao abrir a página
+    document.addEventListener("DOMContentLoaded", function() {
+      listAll();
+    });
+  </script>
+</body>
+</html>
